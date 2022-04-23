@@ -1,3 +1,4 @@
+import 'package:academic/utils/app_theme.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:academic/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,17 @@ class EmailInput extends StatelessWidget {
         fontSize: 16,
       ),
       decoration: InputDecoration(
-        border: InputBorder.none,
+        focusedBorder: UnderlineInputBorder(
+          borderSide: const BorderSide(
+            width: 2.0,
+            color: AppTheme.primaryColor,
+          ),
+        ),
         prefixIcon: Icon(Icons.mail_outlined, size: 30),
         labelText: StringUtils.capitalize(Labels.email, allWords: true),
         labelStyle: TextStyle(
-          fontSize: 18,
-          color: Colors.grey[400],
+          fontSize: 16,
+          color: AppTheme.deactivatedText,
           fontWeight: FontWeight.w800,
         ),
       ),

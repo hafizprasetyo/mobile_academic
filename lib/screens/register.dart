@@ -6,10 +6,12 @@ import 'package:academic/components/forms/username_input.dart';
 import 'package:academic/exceptions/api_exception.dart';
 import 'package:academic/providers/data_authentication_repository.dart';
 import 'package:academic/screens/login.dart';
+import 'package:academic/utils/app_theme.dart';
 import 'package:academic/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -31,7 +33,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   _gotoSignIn() {
     return Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (_) => LoginScreen()));
+      context,
+      PageTransition(
+        child: LoginScreen(),
+        type: PageTransitionType.fade,
+      ),
+    );
   }
 
   _gotoException(dynamic error) {
@@ -63,6 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               _formKey.currentState!.value[Constants.emailField],
             ),
           ),
+          Text(''),
           Text(Strings.gotoSignIn)
         ];
       }
@@ -79,7 +87,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           actions: [
             TextButton(
               onPressed: () => _gotoSignIn(),
-              child: Text(Labels.continue_step.toUpperCase()),
+              child: Text(
+                "MENGERTI",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
             )
           ],
         ),
@@ -105,8 +119,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           appBar: AppBar(
             leading: IconButton(
               icon: Icon(
-                Icons.arrow_back,
-                color: Theme.of(context).primaryColor,
+                Icons.close_outlined,
+                color: AppTheme.primaryColor,
               ),
               onPressed: () => _gotoSignIn(),
             ),
@@ -115,6 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           body: Center(
             child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
               child: Container(
                 constraints: BoxConstraints(
                   maxWidth: 420,
@@ -123,24 +138,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: FormBuilder(
                   key: _formKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Registrasi Akun',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 26,
+                          letterSpacing: 1.5,
+                          color: AppTheme.primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 5),
                       Text(
-                        'Silahkan isi formulir',
+                        'Calon Pejuang ${Constants.companyName} !',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey[400],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 50),
                       Container(child: FullNameInput()),
                       SizedBox(height: 10),
                       Container(child: UsernameInput()),
@@ -153,9 +170,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(
                         height: 55,
                         width: double.infinity,
-                        child: primaryButton(
-                          context: context,
-                          label: Labels.forward_step.toUpperCase(),
+                        child: flatButton(
+                          label: 'KIRIM IDENTITAS',
                           onPressed: () {
                             FocusScope.of(this.context).unfocus();
                             if (_formKey.currentState!.saveAndValidate())

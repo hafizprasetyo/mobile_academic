@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:academic/components/exception/exception_controller.dart';
 import 'package:academic/exceptions/api_exception.dart';
@@ -101,18 +102,18 @@ class _SplashScreenState extends State<SplashScreen> {
     // TAMPILAN PROGRESS INDICATOR
     if (_apiProfile == null) {
       return Scaffold(
-        backgroundColor: AppTheme.kBgDarkColor,
+        backgroundColor: Theme.of(context).primaryColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircularProgressIndicator(),
+              CircularProgressIndicator(color: Colors.white),
               SizedBox(height: 25),
               Text(
                 Strings.loadConnection,
                 style: TextStyle(
-                  color: AppTheme.deactivatedText,
+                  color: Colors.white,
                 ),
               ),
             ],
@@ -125,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Map<String, dynamic> hostServer = _apiProfile!;
 
     return Scaffold(
-      backgroundColor: AppTheme.kBgDarkColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         width: double.infinity,
         child: Column(
@@ -135,11 +136,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(Constants.companyLogo, height: 120),
+                  Flexible(
+                    child: Image.asset(Constants.companyLogo, height: 160),
+                  ),
                   SizedBox(height: 25),
                   Text(
                     Constants.companyName.toUpperCase(),
                     style: TextStyle(
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
                     ),
@@ -151,12 +155,12 @@ class _SplashScreenState extends State<SplashScreen> {
               padding: const EdgeInsets.all(25.0),
               child: Column(
                 children: [
-                  CircularProgressIndicator(),
+                  CircularProgressIndicator(color: Colors.white),
                   SizedBox(height: 15),
                   Text(
                     'Version ' + hostServer['apiVersion'].toString(),
                     style: TextStyle(
-                      color: AppTheme.deactivatedText,
+                      color: Colors.white,
                     ),
                   ),
                 ],

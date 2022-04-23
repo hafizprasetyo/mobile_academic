@@ -29,19 +29,19 @@ class ExceptionDialog {
 
     switch (apiException.error.toUpperCase()) {
       case Initials.invalidInput:
-        icon = Icons.block;
+        icon = Icons.block_outlined;
         break;
       case Initials.unknownAccount:
         icon = Icons.person_outline;
         break;
       case Initials.wrongPassword:
-        icon = Icons.vpn_key;
+        icon = Icons.lock_outline;
         break;
       case Initials.accessDenied:
-        icon = Icons.not_interested;
+        icon = Icons.not_interested_outlined;
         break;
       case Initials.incompleteParams:
-        icon = Icons.cancel_presentation_rounded;
+        icon = Icons.cancel_presentation_outlined;
         break;
       default:
         // TANGANI KESALAHAN TIDAK DIKENAL
@@ -56,9 +56,9 @@ class ExceptionDialog {
       builder: (BuildContext context) {
         return AlertDialog(
           title: LabelIcon(
-            label: "Informasi Peringatan",
+            label: "Peringatan",
             icon: Icons.info_outline_rounded,
-            color: AppTheme.normalText,
+            color: Colors.black,
           ),
           content: Builder(
             builder: (context) {
@@ -74,21 +74,23 @@ class ExceptionDialog {
                     return Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
-                            icon,
-                            size: 16,
-                            color: AppTheme.deactivatedText,
+                            Icons.circle,
+                            size: 5,
+                            color: AppTheme.disabled,
                           ),
-                          SizedBox(width: 5),
+                          SizedBox(width: 8),
                           Flexible(child: Text(messages[key])),
                         ],
                       ),
                     );
                   },
                   separatorBuilder: (context, int) {
-                    return Divider(height: 0);
+                    return Divider(
+                      height: 0,
+                      color: AppTheme.disabled,
+                    );
                   },
                 ),
               );
@@ -97,7 +99,7 @@ class ExceptionDialog {
           actions: <Widget>[
             flatButton(
               label: "MENGERTI",
-              backgroundColor: AppTheme.mainBtn,
+              backgroundColor: AppTheme.primaryColor,
               onPressed: () => Navigator.pop(this.screenContext),
             ),
           ],

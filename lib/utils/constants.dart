@@ -129,9 +129,10 @@ class Strings {
   static const String loadConnection = 'Menunggu koneksi...';
 
   static const String checkEmail =
-      'Periksa surel {email} dan konfirmasi tautan yang dikirim untuk validasi akun.';
+      'Identitas kamu berhasil dikirim, periksa tautan pada alamat surel {email} untuk aktivasi.';
   static const String registrationSuccessful = 'Registrasi berhasil!';
-  static const String gotoSignIn = 'Lanjutkan untuk masuk.';
+  static const String gotoSignIn =
+      'Silahkan tunggu konfirmasi atau hubungi layanan untuk validasi akun.';
   static const String emptyClassrooms =
       'Beritahu kami segera, atau hubungi layanan untuk bergabung dengan ruang tes sekarang juga.';
   static const String emptyLessons =
@@ -312,6 +313,7 @@ Widget flatButton({
   required void Function()? onPressed,
   Color? color,
   Color? backgroundColor,
+  Color? borderColor,
   double? height,
 }) {
   return InkWell(
@@ -321,8 +323,9 @@ Widget flatButton({
       padding: EdgeInsets.all(10),
       height: height,
       decoration: BoxDecoration(
-        color: backgroundColor ?? AppTheme.disabled,
-        borderRadius: BorderRadius.circular(5),
+        color: backgroundColor ?? AppTheme.primaryColor,
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: borderColor ?? AppTheme.primaryColor),
       ),
       child: Text(
         label,
@@ -366,13 +369,14 @@ Widget progressIndicator({String? text}) {
             text ?? Strings.loading,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black45,
-              fontSize: 24,
+              color: AppTheme.white,
+              fontSize: 18,
             ),
           ),
           SizedBox(height: 24),
           CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.black45),
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(AppTheme.white),
           ),
         ],
       ),

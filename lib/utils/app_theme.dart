@@ -12,6 +12,7 @@ class AppTheme {
   static const Color grey = Color(0xFF3A5160);
   static const Color darkGrey = Color(0xFF313A44);
   static const Color disabled = Color(0xFFC0C0C0);
+  static const Color primary = Color(0xff132137);
 
   static const Color normalText = Color(0xFF2F2F2F);
   static const Color darkText = Color(0xFF253840);
@@ -23,8 +24,8 @@ class AppTheme {
   static const Color spacer = Color(0xFFF2F2F2);
   static const String fontName = 'WorkSans';
 
-  static const kPrimaryColor = Color(0xFF366CF6);
-  static const kSecondaryColor = Color(0xFFF5F6FC);
+  static const primaryColor = Color(0xFF30384D);
+  static const secondaryColor = Color(0xFF4A6572);
   static const kBgLightColor = Color(0xFFF2F4FC);
   static const kBgDarkColor = Color(0xFFEBEDFA);
   static const kBadgeColor = Color(0xFFEE376E);
@@ -131,8 +132,9 @@ class AppTheme {
 
   static ThemeData buildLightTheme() {
     final ThemeData base = ThemeData.light();
-    final Color primaryColor = Color(0xFF00C48C);
-    final Color secondaryColor = Color(0x54D3C2);
+    final Color primaryColor = Color(0xFF30384D);
+    // Color(0xff132137)
+    final Color secondaryColor = Color(0xFF4A6572);
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
       primary: primaryColor,
       secondary: secondaryColor,
@@ -141,23 +143,11 @@ class AppTheme {
     return base.copyWith(
       colorScheme: colorScheme,
       primaryColor: primaryColor,
-      buttonColor: primaryColor,
-      indicatorColor: Colors.white,
-      splashColor: Colors.white24,
       splashFactory: InkRipple.splashFactory,
-      accentColor: secondaryColor,
-      canvasColor: Colors.white,
-      backgroundColor: Color(0xFFFFFFFF),
-      scaffoldBackgroundColor: AppTheme.kBgLightColor,
       errorColor: Color(0xFFB00020),
-      buttonTheme: ButtonThemeData(
-        colorScheme: colorScheme,
-        textTheme: ButtonTextTheme.primary,
-      ),
       // textTheme: _buildTextTheme(base.textTheme),
-      textTheme: GoogleFonts.quicksandTextTheme(),
+      textTheme: GoogleFonts.wellfleetTextTheme(),
       primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
-      accentTextTheme: _buildTextTheme(base.accentTextTheme),
       platform: TargetPlatform.iOS,
     );
   }
