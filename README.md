@@ -1,4 +1,4 @@
-# finalapp
+# MOBILE ACADEMIC
 
 A new Flutter project.
 
